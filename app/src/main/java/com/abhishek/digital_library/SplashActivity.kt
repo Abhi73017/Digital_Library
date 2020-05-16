@@ -13,15 +13,13 @@ import kotlinx.android.synthetic.main.activity_splash.*
 class SplashActivity : AppCompatActivity() {
 
     lateinit var topAnim : Animation
-    lateinit var bottomAnim : Animation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        //window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         topAnim = AnimationUtils.loadAnimation(this, R.anim.topanim)
-        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottomanim)
 
 
         imageView.animation = topAnim
