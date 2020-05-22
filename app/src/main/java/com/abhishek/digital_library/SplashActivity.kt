@@ -1,26 +1,54 @@
+@file:Suppress("DEPRECATION")
+
 package com.abhishek.digital_library
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.google.android.play.core.appupdate.*
 import android.view.View.VISIBLE
-import android.view.WindowManager
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.UpdateAvailability
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity() {
 
+    private val MY_REQUEST_CODE = 9465
     lateinit var topAnim : Animation
+
+    override fun onStart() {
+        super.onStart()
+
+        if (isOnline()){
+            updateApp()
+        }else
+        {
+            val dialogBuilder = AlertDialog.Builder(this)
+
+            dialogBuilder.setMessage("Internet Connection is not Available.")
+                .setCancelable(false)
+                .setPositiveButton("OK", { dialog, id ->
+                    System.exit(-1)
+                })
+
+            val alert = dialogBuilder.create()
+            alert.setTitle("Error")
+            alert.show()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        //window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         topAnim = AnimationUtils.loadAnimation(this, R.anim.topanim)
-
 
         imageView.animation = topAnim
         dg_text.animation = topAnim
@@ -33,14 +61,39 @@ class SplashActivity : AppCompatActivity() {
             }, 3000
         )
 
-        Handler().postDelayed(
-            {
-                Handler().postDelayed({
-                    val i = Intent(this, LoginActivity::class.java)
-                    startActivity(i)
-                    finish()
-                }, 500)
-            }, 5000
-        )
+            Handler().postDelayed(
+                {
+                    Handler().postDelayed({
+                        if(isOnline()){
+                        val i = Intent(this, LoginActivity::class.java)
+                        startActivity(i)
+                        finish()}
+                    }, 500)
+                }, 5000
+            )
+    }
+
+    private fun isOnline(): Boolean {
+        val connMgr = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo: NetworkInfo? = connMgr.activeNetworkInfo
+        return networkInfo?.isConnected == true
+    }
+
+    private fun updateApp() {
+
+        val appUpdateManager = AppUpdateManagerFactory.create(this)
+
+        val appUpdateInfoTask = appUpdateManager.appUpdateInfo
+
+        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+                appUpdateManager.startUpdateFlowForResult(
+                    appUpdateInfo,
+                    AppUpdateType.IMMEDIATE,
+                    this,
+                    MY_REQUEST_CODE)
+            }
+        }
     }
 }

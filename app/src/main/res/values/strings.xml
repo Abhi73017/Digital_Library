@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Digital_Library</string>
+    <string name="digital_library">Digital Library</string>
+    <string name="pass">*********</string>
+    <string name="sign_in">Sign-in</string>
+    <string name="sign_in_with_email">Sign in with Email</string>
+    <string name="sign_in_with_phone">Sign in with Phone</string>
+    <string name="login">Login</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="sign_in_with_fb">Sign in with Fb</string>
+    <string name="not_a_user_register_now">Not a User? Register Now</string>
+    <string name="back"><![CDATA[<Back]]></string>
+    <string name="email">Email</string>
 </resources>

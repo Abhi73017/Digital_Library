@@ -20,10 +20,10 @@
 
     <TextView
         android:id="@+id/dg_text"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/bold"
-        android:text="Digital Library"
+        android:text="@string/digital_library"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30sp"
@@ -37,10 +37,9 @@
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="181dp"
-        android:layout_marginEnd="182dp"
-        android:visibility="gone"
+        android:layout_marginTop="10dp"
         android:indeterminateTint="@color/red"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dg_text" />

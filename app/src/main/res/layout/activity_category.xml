@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Category"
+    android:orientation="vertical"
+    android:background="@color/yellow"
+    style="@style/AppTheme1">
+
+    <Button
+        android:id="@+id/cat_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_btn"
+        android:layout_marginTop="30dp"
+        android:text="CATEGORIES"
+        android:drawableStart="@drawable/ic_grade_red_24dp"
+        android:drawableEnd="@drawable/ic_grade_red_24dp"
+        android:paddingHorizontal="20dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:textSize="30dp"
+        android:textColor="@color/faded_black"
+        android:fontFamily="@font/bold"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:scrollbars="vertical"
+        android:screenReaderFocusable="true"
+        android:scrollbarSize="10dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp">
+
+
+        <Button
+            android:id="@+id/Literature_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:text="LITERATURE"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/bold"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/literaturebtn"/>
+
+        <Button
+            android:id="@+id/ml_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:text="MACHINE LEARNING"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/bold"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/mlbtn"/>
+
+        <Button
+            android:id="@+id/karlmarx_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:text="KARL MARX"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:fontFamily="@font/bold"
+            android:background="@drawable/karlmarxbtn"/>
+
+        <Button
+            android:id="@+id/maths_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="MATHEMATICS"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:fontFamily="@font/bold"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/mathsbtn"/>
+
+        <Button
+            android:id="@+id/eee_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="ELE. &amp; ELECTRONICS"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:fontFamily="@font/bold"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/eeebtn"/>
+
+        <Button
+            android:id="@+id/programming_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="PROGRAMMING"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/bold"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/programmingbtn"/>
+
+        <Button
+            android:id="@+id/ece_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="ELECTRONICS &amp; COMMUNICATION"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/bold"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/eleandcommubtn"/>
+
+        <Button
+            android:id="@+id/history_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="HISTORY"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:fontFamily="@font/bold"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/hostorybtn"/>
+
+        <Button
+            android:id="@+id/civil_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="CIVIL ENGG."
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:fontFamily="@font/bold"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/civilbtn"/>
+
+        <Button
+            android:id="@+id/ds_algo_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="30dp"
+            android:text="DS &amp; ALGO"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/bold"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/dsalgobtn"/>
+
+        <Button
+            android:id="@+id/english_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="30dp"
+            android:text="ENGLISH"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/bold"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/englishbtn"/>
+
+        <Button
+            android:id="@+id/chiildren_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="30dp"
+            android:text="CHILDREN'S"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/bold"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/childrenbtn"/>
+
+        <Button
+            android:id="@+id/bio_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="30dp"
+            android:text="BIOGRAPHIES"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/bold"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/biographybtn"/>
+
+        <Button
+            android:id="@+id/geography_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="30dp"
+            android:text="GEOGRAPHY"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/bold"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/geographybtn"/>
+
+        <Button
+            android:id="@+id/spiritual_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="30dp"
+            android:text="SPIRITUAL"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/bold"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/spiritualbtn"/>
+
+    </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

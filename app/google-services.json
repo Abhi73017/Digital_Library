@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "490458351965",
+    "firebase_url": "https://digitallibrary-64e5b.firebaseio.com",
+    "project_id": "digitallibrary-64e5b",
+    "storage_bucket": "digitallibrary-64e5b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:490458351965:android:2c5322546a10e6184180b4",
+        "android_client_info": {
+          "package_name": "com.abhishek.digital_library"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "490458351965-gcud0ehetr5uak6qre6vnergph2hovdn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALN47nTnkkzrT7XCfe740vTDLUTVommrk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "490458351965-gcud0ehetr5uak6qre6vnergph2hovdn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
