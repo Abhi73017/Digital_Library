@@ -12,6 +12,7 @@ import com.google.android.gms.common.api.GoogleApiClient
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import android.app.AlertDialog
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -21,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedListener {
 
+    private lateinit var auth: FirebaseAuth
 
     companion object {
         private val PERMISSION_CODE = 9999
@@ -56,18 +58,18 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
         firebaseAuth!!.signInWithCredential(credential!!)
             .addOnSuccessListener { authResult ->
                 val logged_email: String? = authResult.user?.email
-
+                val user_name : String? = authResult.user?.displayName
                 // added Toast For Login info
                 Toast.makeText(this, "logged: $logged_email", Toast.LENGTH_SHORT).show()
 
                 val logged_activity = Intent(this@LoginActivity, Dashboard::class.java)
-
                 alertdialog= SpotsDialog.Builder()
                     .setContext(this)
                     .setTheme(R.style.Custom1)
                     .build()
                     .apply {show() }
 
+                logged_activity.putExtra("username", user_name)
                 startActivity(logged_activity)
                 finish()
             }
@@ -79,6 +81,8 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        auth = FirebaseAuth.getInstance()
 
         register_text.setOnClickListener {
             email_register_btn.visibility = View.VISIBLE
@@ -120,14 +124,43 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
             email_login_btn.visibility = View.VISIBLE
         }
 
+        email_login_btn.setOnClickListener {
+            if(validateForm()){
+                val email = edit_email_field_login.text.toString()
+                val pass = edit_pass_field_login.text.toString()
+
+                alertdialog = SpotsDialog.Builder()
+                    .setContext(this)
+                    .setTheme(R.style.Custom2)
+                    .build()
+                    .apply { show() }
+
+                signin(email, pass)
+            }
+        }
+
+        email_register_btn.setOnClickListener {
+            if (validateForm()) {
+                val email = edit_email_field_login.text.toString()
+                val pass = edit_pass_field_login.text.toString()
+
+                alertdialog = SpotsDialog.Builder()
+                    .setContext(this)
+                    .setTheme(R.style.Custom2)
+                    .build()
+                    .apply { show() }
+
+                register(email, pass)
+            }
+        }
 
             configureGoogleClient()
 
             firebaseAuth = FirebaseAuth.getInstance()
 
             google_login_btn.setOnClickListener {
+                Toast.makeText(this, "Sign in process started", Toast.LENGTH_SHORT).show()
                 SignIn()
-
             }
 
     }
@@ -157,4 +190,75 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
         Toast.makeText(this, "" + p0.errorMessage, Toast.LENGTH_SHORT).show()
     }
 
+    private fun validateForm(): Boolean {
+        var valid = true
+
+        val email = edit_email_field_login.text.toString()
+        if (TextUtils.isEmpty(email)) {
+            edit_email_field_login.error = "Required."
+            valid = false
+        } else {
+            edit_email_field_login.error = null
+        }
+
+        val password = edit_pass_field_login.text.toString()
+        if (TextUtils.isEmpty(password)) {
+            edit_pass_field_login.error = "Required."
+            valid = false
+        } else {
+            edit_pass_field_login.error = null
+        }
+
+        return valid
+    }
+
+    private fun signin(email : String, pass: String){
+        auth.signInWithEmailAndPassword(email, pass)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    alertdialog.cancel()
+
+                    alertdialog = SpotsDialog.Builder()
+                        .setContext(this)
+                        .setTheme(R.style.Custom1)
+                        .build()
+                        .apply { show() }
+
+                    val user = auth.currentUser
+                    val i = Intent(this, Dashboard::class.java)
+                    i.putExtra("username", email)
+                    startActivity(i)
+                    finish()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    private fun register(email: String, pass: String){
+        auth.createUserWithEmailAndPassword(email, pass)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    alertdialog.cancel()
+
+                    alertdialog = SpotsDialog.Builder()
+                        .setContext(this)
+                        .setTheme(R.style.Custom1)
+                        .build()
+                        .apply { show() }
+
+                    val user = auth.currentUser
+                    val i = Intent(this, Dashboard::class.java)
+                    i.putExtra("username", email)
+                    startActivity(i)
+                    finish()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
 }
