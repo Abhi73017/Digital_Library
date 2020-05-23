@@ -16,10 +16,13 @@ import com.google.android.play.core.install.model.UpdateAvailability
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AlertDialog
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity() {
 
+
+    private lateinit var auth: FirebaseAuth
     private val MY_REQUEST_CODE = 9465
     lateinit var topAnim : Animation
 
@@ -65,9 +68,19 @@ class SplashActivity : AppCompatActivity() {
                 {
                     Handler().postDelayed({
                         if(isOnline()){
-                        val i = Intent(this, LoginActivity::class.java)
-                        startActivity(i)
-                        finish()}
+                            auth = FirebaseAuth.getInstance()
+                            val user = auth.currentUser
+                            if (user!=null){
+                                val i = Intent(this, Dashboard::class.java)
+                                startActivity(i)
+                                finish()
+                            }
+                            else{
+                                val i = Intent(this, LoginActivity::class.java)
+                                startActivity(i)
+                                finish()
+                            }
+                        }
                     }, 500)
                 }, 5000
             )

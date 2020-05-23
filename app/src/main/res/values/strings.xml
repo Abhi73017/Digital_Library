@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Digital_Library</string>
+    <string name="app_name">Digital Library</string>
     <string name="digital_library">Digital Library</string>
     <string name="pass">*********</string>
     <string name="sign_in">Sign-in</string>

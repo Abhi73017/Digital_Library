@@ -57,10 +57,6 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
 
         firebaseAuth!!.signInWithCredential(credential!!)
             .addOnSuccessListener { authResult ->
-                val logged_email: String? = authResult.user?.email
-                val user_name : String? = authResult.user?.displayName
-                // added Toast For Login info
-                Toast.makeText(this, "logged: $logged_email", Toast.LENGTH_SHORT).show()
 
                 val logged_activity = Intent(this@LoginActivity, Dashboard::class.java)
                 alertdialog= SpotsDialog.Builder()
@@ -69,7 +65,6 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
                     .build()
                     .apply {show() }
 
-                logged_activity.putExtra("username", user_name)
                 startActivity(logged_activity)
                 finish()
             }
@@ -135,7 +130,7 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
                     .build()
                     .apply { show() }
 
-                signin(email, pass)
+                signinWithEmail(email, pass)
             }
         }
 
@@ -160,12 +155,12 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
 
             google_login_btn.setOnClickListener {
                 Toast.makeText(this, "Sign in process started", Toast.LENGTH_SHORT).show()
-                SignIn()
+                SignInWithGoogle()
             }
 
     }
 
-    private fun SignIn() {
+    private fun SignInWithGoogle() {
         val intent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)
         startActivityForResult(
             intent,
@@ -212,7 +207,7 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
         return valid
     }
 
-    private fun signin(email : String, pass: String){
+    private fun signinWithEmail(email : String, pass: String){
         auth.signInWithEmailAndPassword(email, pass)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -224,9 +219,7 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
                         .build()
                         .apply { show() }
 
-                    val user = auth.currentUser
                     val i = Intent(this, Dashboard::class.java)
-                    i.putExtra("username", email)
                     startActivity(i)
                     finish()
                 } else {
@@ -249,9 +242,7 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
                         .build()
                         .apply { show() }
 
-                    val user = auth.currentUser
                     val i = Intent(this, Dashboard::class.java)
-                    i.putExtra("username", email)
                     startActivity(i)
                     finish()
                 } else {
