@@ -1,8 +1,10 @@
 package com.abhishek.digital_library
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -47,7 +49,8 @@ class Dashboard : AppCompatActivity() {
 
 
         share_btn.setOnClickListener {
-            Toast.makeText(this, "Feature will be available soon", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "Feature will be available soon", Toast.LENGTH_SHORT).show()
+            share()
         }
 
         category_btn.setOnClickListener {
@@ -87,5 +90,23 @@ class Dashboard : AppCompatActivity() {
         Toast.makeText(this, "Press once again to exit!", Toast.LENGTH_SHORT).show()
 
         Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
+    }
+
+    private fun share(){
+        val whatsAppAppId = "com.whatsapp"
+
+        val packageManager = packageManager
+        try {
+            intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/plain"
+            val sendText = "Hey there! I'm using *Digital Library* app. I'm enjoying an enormous collection of E-books. Download the app from Play store and start using it. Download link : https://play.google.com/store/apps/details?id=com.abhishek.digital_library"
+
+            val info = packageManager.getPackageInfo(whatsAppAppId, PackageManager.GET_META_DATA)
+            intent.`package` = whatsAppAppId
+            intent.putExtra(Intent.EXTRA_TEXT, sendText)
+            startActivity(Intent.createChooser(intent, "Share the app with : "))
+        }catch (e:PackageManager.NameNotFoundException){
+            Log.e("WhatsApp", "WhatsApp is not installed in this device")
+        }
     }
 }

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "490458351965-d2s2kerkfrribiv4gnrgs0jea7bu6qc2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.abhishek.digital_library",
+            "certificate_hash": "4e1119ae58399594298e5a85e072f4f768f421c6"
+          }
+        },
+        {
           "client_id": "490458351965-gcud0ehetr5uak6qre6vnergph2hovdn.apps.googleusercontent.com",
           "client_type": 3
         }

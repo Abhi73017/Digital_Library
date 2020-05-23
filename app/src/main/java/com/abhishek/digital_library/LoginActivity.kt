@@ -158,6 +158,14 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
                 SignInWithGoogle()
             }
 
+        fb_login_btn.setOnClickListener {
+            Toast.makeText(this,"This login feature will be available in the next version.", Toast.LENGTH_SHORT).show()
+        }
+
+        phone_login_btn.setOnClickListener {
+            Toast.makeText(this,"This login feature will be available in the next version.", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     private fun SignInWithGoogle() {

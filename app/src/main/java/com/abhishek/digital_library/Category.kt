@@ -107,6 +107,12 @@ class Category : AppCompatActivity() {
             startActivity(i)
         }
 
+        cse_btn.setOnClickListener {
+            val i = Intent(this, BookView::class.java)
+            i.putExtra("category", "ComputerScience")
+            startActivity(i)
+        }
+
     }
 }
 
