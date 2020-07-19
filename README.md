@@ -1,4 +1,4 @@
-# Digital_Library
+# Digital Library
 An android app as digital library
 You can read a huge collection of ebooks for free using the app.
 
@@ -17,3 +17,7 @@ You can read a huge collection of ebooks for free using the app.
 
 ## TO DO
 
+ - Add Search bar to search books in the database
+ - Add recents/history section and favorite section too
+ - Add function to randomise books
+ - Add upload section to allow users to upload books
