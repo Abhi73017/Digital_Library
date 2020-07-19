@@ -17,7 +17,3 @@ You can read a huge collection of ebooks for free using the app.
 
 ## TO DO
 
- >> Add search bar to search books in database
- >> add upload section where users can upload books
- >> add function to randomise books
- >> add recents/history section and favorite section
